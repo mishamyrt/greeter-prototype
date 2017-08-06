@@ -1,0 +1,168 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+}
+.background {
+  width: 100%;
+  transition: opacity .6s ease-out;
+  position: absolute;
+  transform: scale(1.1);
+  height: 100%;
+  background: url(../img/wallpaper.jpg);
+  background-size: cover;
+  background-position: 50%;
+}
+.background.is__blured {
+  filter: brightness(0.75) blur(12px);
+}
+.login {
+  position: absolute;
+  display: flex;
+  transition: opacity .6s ease-out;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.login-form {
+  max-width: 186px;
+  display: inline-block;
+  transition: opacity .2s ease-in-out;
+}
+.inputForm {
+  position: relative;
+}
+.inputForm-input {
+  width: 100%;
+  background: linear-gradient(to bottom, #eeeeee 0%, #f3f3f3 100%);
+  border: 1px solid rgba(184, 184, 184, 0.22);
+  border-radius: 2.5px;
+  box-shadow: inset 0 1px 0 0 #e0e0e0, 0 0 0px 1px rgba(255, 255, 255, 0.21);
+  color: #333;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 4px 5px;
+  outline: none;
+  transition: all 200ms ease-out;
+}
+.inputForm-jump {
+  position: absolute;
+  fill: #bebebe;
+  transition: fill .2s ease-in-out;
+  top: 24%;
+  right: 5px;
+}
+.inputForm-jump.is__active {
+  fill: #9d9d9d;
+}
+.inputForm-jump.is__active:hover {
+  fill: #535353;
+}
+.inputForm-input:focus {
+  outline: none;
+  box-shadow: inset 0 1px 0 0 #e0e0e0, 0 0 0px 1px #3d9bda;
+}
+.login-avatar {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  max-width: 96px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05),
+    inset 0 1px 0 0 rgba(255, 255, 255, .45),
+    inset 0 -1px 0 0 rgba(255, 255, 255, .15), 0 1px 2px rgba(0, 0, 0, .15),
+    0 2px 6px rgba(0, 0, 0, .1);
+}
+.login-username {
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  margin: 15px 0 25px;
+}
+::-webkit-input-placeholder {
+  color: #bababa;
+}
+::-moz-placeholder {
+  color: #bababa;
+}
+:-moz-placeholder {
+  color: #bababa;
+}
+:-ms-input-placeholder {
+  color: #bababa;
+}
+.logo {
+  transition: opacity .5s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  cursor: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo.is__hidden {
+  pointer-events: none;
+  cursor: inherit;
+  opacity: 0;
+}
+.logo img {
+  width: 310px;
+  height: 310px;
+}
+.plank {
+  transform: translateY(73px);
+  transition: transform .4s ease-out;
+  position: absolute;
+  bottom: -5px;
+  text-align: center;
+  width: 100%;
+}
+.wingpanel {
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+  position: absolute;
+  transition: transform .4s ease-out;
+  width: 100%;
+  height: 31px;
+  background-color: rgba(0, 0, 0, 0.40);
+  top: 0px;
+}
+.wingpanel img {
+  position: absolute;
+  right: 0px;
+}
+.wingpanel-percent {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  right: 52px;
+  top: 6px;
+}
+.wingpanel-date {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 6px 0 0 0;
+  text-align: center;
+}
+.wingpanel-app {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: none;
+  margin: 6px 0px 0px 11px;
+  position: absolute;
+}
+.wingpanel-app.is__visible {
+  display: inline;
+}

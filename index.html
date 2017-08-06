@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Greeter Prototype</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body style="background: #000">
+    <div style="opacity: 0" class="background">
+    </div>
+    <div style="opacity: 0" class="background is__blured">
+    </div>
+    <div style="opacity: 0" class="login">
+        <div style="opacity: 0;" class="login-form">
+            <img class="login-avatar" src="./img/me.jpg">
+            <p class="login-username">Misha Myrt</p>
+            <div class="inputForm">
+                <input autofocus type="password" placeholder="Enter Password" class="inputForm-input">
+                <svg class="inputForm-jump" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                    <path d="M8 1C4.147 1 1.03 4.115 1.03 7.97c0 3.852 3.117 6.968 6.97 6.968 3.853 0 6.97-3.116 6.97-6.97C14.97 4.116 11.852 1 8 1zm0 2.938l5 4.03-5 4v-3H4v-2h4V3.94z"
+                        style="text-indent:0;text-transform:none;" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="plank">
+        <img src="./img/plank.png">
+    </div>
+    <div style="transform: translateY(-30px);" class="wingpanel">
+        <img src="./img/wingpanel.png">
+        <span class="wingpanel-percent">84%</span>
+        <span class="wingpanel-app">Applications</span>
+        <p class="wingpanel-date">Wed, 2 Aug 16:26</p>
+    </div>
+    <div class="logo">
+        <img src="./img/logo.png">
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let image = new Image();
+        let background = document.querySelector('.background.is__blured');
+        let backgroundNB = document.querySelector('.background');
+        let login = document.querySelector('.login');
+        let logo = document.querySelector('.logo');
+        let wingpanel = document.querySelector('.wingpanel');
+        let plank = document.querySelector('.plank');
+        let date = document.querySelector('.wingpanel-date');
+        let app = document.querySelector('.wingpanel-app');
+        let loginForm = document.querySelector('.login-form');
+        let input = document.querySelector('.inputForm-input');
+        let jump = document.querySelector('.inputForm-jump');
+        let isWiggle = false;
+        let form = document.querySelector('.login-form');
+        image.onload = function () {
+            showLock();
+        };
+        image.onerror = image.onload;
+        image.src = './img/wallpaper.jpg';
+        function showLock() {
+            setTimeout(function () {
+                logo.classList.add('is__hidden');
+                setTimeout(function () {
+                background.style.opacity = 1;
+                setTimeout(function(){
+                    login.style.opacity = 1;
+                    loginForm.style.opacity = '1';
+                    wingpanel.style.transform = '';
+                    setTimeout(function(){
+                        backgroundNB.style.opacity = 1;
+                    }, 300);
+                }, 300);
+            }, 700);
+            }, 2000);
+        }
+        jump.onclick = function (e) {
+            e.preventDefault();
+            auth();
+        }
+        input.onkeydown =
+            function (event) {
+                if (event.which == 13 || event.keyCode == 13) {
+                    auth();
+                    return false;
+                }
+                return true;
+            };
+        input.onkeyup = function(){
+            if (input.value.length == 0){
+                jump.classList.remove('is__active');
+            }
+            else{
+                jump.classList.add('is__active');
+            }
+        }
+        function auth() {
+            console.log(jump.classList.contains('is__active'));
+            if (!isWiggle && jump.classList.contains('is__active')) {
+                if (input.value == 'password') {
+                    loginForm.style.transition = 'opacity .3s ease-out, transform .3s ease-out';
+                    loginForm.style.transform = 'translateY(15px)';
+                    loginForm.style.opacity = 0;
+                    wingpanel.style.transform = "translateY(-30px)";
+                    setTimeout(function(){
+                        background.style.opacity = 0;
+                        setTimeout(function(){
+                            plank.style.transform = 'translateY(0)';
+                            app.classList.add('is__visible');
+                            setTimeout(function(){
+                                wingpanel.style.transform = '';
+                            }, 200)
+                        }, 800);
+                    }, 350);
+                }
+                else {
+                    requestAnimationFrame(function () {
+                        isWiggle = true;
+                        wiggle(0, 50);
+                    });
+                }
+            }
+        }
+        function wiggle(min, max) {
+            let pos = (15 / ((Math.pow(min, 1.15) / 10 + 0.5)) * Math.sin(min / 2));
+            min += 1;
+            loginForm.style.transform = 'translateX(' + pos + 'px)';
+            if (min < max) {
+                requestAnimationFrame(function () {
+                    wiggle(min, max);
+                });
+            }
+            else{
+                isWiggle = false;
+            }
+        }
+        let weekday=new Array(7);
+        weekday[0]="Sun";
+        weekday[1]="Mon";
+        weekday[2]="Tue";
+        weekday[3]="Wed";
+        weekday[4]="Thu";
+        weekday[5]="Fri";
+        weekday[6]="Sat";
+        let month=new Array(12);
+        month[0]="Jan";
+        month[1]="Feb";
+        month[2]="Mar";
+        month[3]="Apr";
+        month[4]="May";
+        month[5]="Jun";
+        month[6]="Jul";
+        month[7]="Aug";
+        month[8]="Sept";
+        month[9]="Oct";
+        month[10]="Nov";
+        month[11]="Dec";
+        setInterval(function(){
+            let day=new Date();
+            let dateString = weekday[day.getDay()] + ', ' + day.getDate() + ' ' + month[day.getMonth()] + ' ' + day.getHours() + ':' + day.getMinutes();
+            date.innerText = dateString;
+        }, 1000);
+        
+    });
+
+</script>
+
+</html>
